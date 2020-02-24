@@ -1,9 +1,12 @@
 class PatientsController < ApplicationController
+  before_action :redirect_if_not_logged_in
 
   def index
+    @patients = Patient.all
   end
 
   def new
+    @patient = Patient.new
   end
 
   def create
@@ -24,5 +27,6 @@ class PatientsController < ApplicationController
   private
 
   def patient_params
+    params.require(:patient).permit(:name, :birthdate, :gender )
   end
 end

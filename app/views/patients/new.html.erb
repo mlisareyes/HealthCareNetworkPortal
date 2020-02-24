@@ -1,0 +1,17 @@
+<h1>Create a New Patient:</h1>
+
+<%= form_for(@patient) do |f| %>
+  <%= f.label "Name:" %>
+  <%= f.text_field :name %>
+  <br>
+    <br>
+  <%= f.label "Birthdate:" %>
+  <%= f.date_select :birthdate %>
+  <br>
+    <br>
+  <%= f.label "Gender:" %>
+  <%= f.select(:gender, [ 'Male', 'Female', 'Other', 'Prefer Not to Disclose' ], {}, { :class => 'select' }) %>
+  <br>
+    <br>
+  <%= f.submit %>
+<% end %>
