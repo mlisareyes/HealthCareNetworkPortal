@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
     User.find_by_id(session[:user_id])
   end
 
-
   def redirect_if_not_logged_in
     redirect_to '/' if !logged_in?
   end

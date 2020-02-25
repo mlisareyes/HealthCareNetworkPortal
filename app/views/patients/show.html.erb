@@ -1,1 +1,7 @@
 <h1><%= @patient.name %></h1>
+  <p>Birthdate: <%= @patient.birthdate %></p>
+  <p>Gender: <%= @patient.gender %></p>
+
+<h4>Notes:</h4>
+
+<p><%= link_to 'Add new note', new_patient_note_path(@patient)%></p>

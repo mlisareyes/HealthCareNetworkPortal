@@ -2,11 +2,20 @@ class PatientsController < ApplicationController
   before_action :redirect_if_not_logged_in
 
   def index
-    @patients = Patient.all
+    if params[:user_id] && @user = User.find_by_id(params[:user_id])
+      @patients = @user.patients + @user.noted_patients
+      raise.inspect
+    else
+      @patients = Patient.all
+    end
   end
 
   def new
-    @patient = Patient.new
+    if params[:user_id] && @user = User.find_by_id(params[:user_id])
+      @patient = @user.patients.build
+    else
+      @patient = Patient.new
+    end
   end
 
   def create
