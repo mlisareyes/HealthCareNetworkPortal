@@ -10,9 +10,16 @@ class PatientsController < ApplicationController
   end
 
   def create
+    @patient = current_user.patients.build(patient_params)
+    if @patient.save
+      redirect_to patient_path(@patient)
+    else
+      render :new
+    end
   end
 
   def show
+    @patient = Patient.find_by_id(params[:id])
   end
 
   def edit
@@ -27,6 +34,6 @@ class PatientsController < ApplicationController
   private
 
   def patient_params
-    params.require(:patient).permit(:name, :birthdate, :gender )
+    params.require(:patient).permit(:name, :birthdate, :gender)
   end
 end
