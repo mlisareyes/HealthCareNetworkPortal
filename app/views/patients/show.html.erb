@@ -4,4 +4,12 @@
 
 <h4>Notes:</h4>
 
-<p><%= link_to 'Add new note', new_patient_note_path(@patient)%></p>
+<p><%= link_to 'Add New Note', new_patient_note_path(@patient)%></p>
+<p><%= link_to 'See All Notes', patient_notes_path(@patient)%></p>
+<p><%= link_to 'See All Appointments', patient_appointments_path(@patient)%></p>
+
+<h4>Recent Notes:</h4>
+
+<% @patient.notes.each do |n| %>
+  <li><%= n.content %></li>
+<% end %>

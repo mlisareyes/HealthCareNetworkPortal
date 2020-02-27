@@ -9,13 +9,13 @@ Rails.application.routes.draw do
 
   delete '/logout' => 'sessions#destroy'
 
-  resources :notes
-  resources :appointments
   resources :users do
-    resources :patients, :appointments, :notes
+    resources :patients, :appointments, only: [:index, :new, :create, :destroy]
   end
   resources :patients do
     resources :notes, :appointments
   end
+  resources :appointments
+  resources :notes
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

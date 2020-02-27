@@ -1,1 +1,5 @@
-index.html.erb
+<h1>All Appointments:</h1>
+
+<% @appointments.each do |a| %>
+  <li><%= a.date.strftime("%B %d, %Y") %>, <%= a.time.strftime("%k:%M")%></li>
+<% end %>

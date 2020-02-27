@@ -19,11 +19,11 @@ class NotesController < ApplicationController
   end
 
   def create
+    @patient = Patient.find_by_id(params[:patient_id])
     @note = current_user.notes.build(notes_params)
     if @note.save
-      redirect_to notes_path
+      redirect_to patient_path(@note.patient_id)
     else
-      # raise.inspect
       render :new
     end
     # @note = Patient.find_by_id(params[:patient_id]).notes.build(notes_params)
@@ -31,12 +31,18 @@ class NotesController < ApplicationController
   end
 
   def show
+    @patient = Patient.find_by_id(params[:patient_id])
   end
 
   def edit
   end
 
   def update
+    if @note.update(note_params)
+      redirect_to note_path(@note)
+    else
+      render :edit
+    end
   end
 
   def destroy
