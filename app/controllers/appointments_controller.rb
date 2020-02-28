@@ -22,7 +22,13 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    
+    @appointment = Appointment.find_by_id(params[:id])
+  end
+
+  def destroy
+    @appointment= Appointment.find_by_id(params[:id]).destroy
+    redirect_to appointments_path(@appointment)
+    #error if not deleted
   end
 
   private

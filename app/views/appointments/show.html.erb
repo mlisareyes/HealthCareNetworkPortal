@@ -1,6 +1,8 @@
 <h1>Appointment Details:</h1>
 
-<p>Patient Name:</p>
-<p>Doctor Name:</p>
-<p>Date:</p>
-<p>Time</p>
+<p><b>Patient Name:</b> <%= @appointment.patient.name %></p>
+<p><b>Doctor Name:</b> Dr. <%= @appointment.user.name %></p>
+<p><b>Date:</b> <%= @appointment.date.strftime("%B %d, %Y") %></p>
+<p><b>Time:</b> <%= @appointment.time.strftime("%k:%M") %></p>
+
+<%= button_to 'Delete Appointment', appointment_path(@appointment), method: :delete, data: { confirm: "Are you sure you want to delete this appointment?" } %>

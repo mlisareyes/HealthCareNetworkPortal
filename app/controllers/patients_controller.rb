@@ -32,12 +32,24 @@ class PatientsController < ApplicationController
   end
 
   def edit
+    @patient = Patient.find_by_id(params[:id])
   end
 
   def update
+    @patient = Patient.find_by_id(params[:id])
+    if @patient.update(patient_params)
+      redirect_to patient_path(@patient)
+    else
+      #error
+      render :edit
+    end
   end
 
   def delete
+    @patient = Patient.find_by_id(params[:id])
+    @patient.destroy
+    redirect_to patients_path
+    #add error if @patient was not destroyed
   end
 
   private

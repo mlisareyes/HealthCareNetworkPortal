@@ -35,17 +35,20 @@ class NotesController < ApplicationController
   end
 
   def edit
+    @note = Note.find_by_id(params[:id])
   end
 
   def update
     if @note.update(note_params)
       redirect_to note_path(@note)
     else
+      #error
       render :edit
     end
   end
 
-  def destroy
+  def delete
+    
   end
 
   private

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
 
   delete '/logout' => 'sessions#destroy'
+  delete '/apppointment/:id' => 'appointments#destroy'
 
   resources :users do
     resources :patients, :appointments, only: [:index, :new, :create, :destroy]
