@@ -8,4 +8,7 @@ class Patient < ApplicationRecord
   validates :name, presence: true
   validates :birthdate, presence: true
   validates :gender, presence: true
+
+  scope :alpha, -> { order (:name) }
+
 end

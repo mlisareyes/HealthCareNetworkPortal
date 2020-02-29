@@ -4,9 +4,9 @@ class PatientsController < ApplicationController
   def index
     if params[:user_id] && @user = User.find_by_id(params[:user_id])
       # @patients = @user.patients + @user.noted_patients
-      @patients = @user.patients
+      @patients = @user.patients.alpha
     else
-      @patients = Patient.all
+      @patients = Patient.alpha
     end
   end
 

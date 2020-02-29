@@ -1,5 +1,8 @@
 <h1>Sign Up</h1>
 
+<%= render partial: "layouts/errors", locals: {object: @user} %>
+<!-- render the errors partial, send it the @user as the 'object' -->
+
 <%= form_for(@user, url:'/signup') do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
