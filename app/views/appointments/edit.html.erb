@@ -1,0 +1,19 @@
+<h1>Edit Appointment:</h1>
+<br>
+
+<%= render partial: "layouts/errors", locals: {object: @appointment} %>
+<!-- render the errors partial, send it the @appointment as the 'object' -->
+
+<%= form_for(@appointment) do |f| %>
+  <%= f.label :patient %>
+  <%= f.select :patient_id, Patient.all.collect { |p| [p.name, p.id] } %>
+  <br />
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+  <br />
+  <%= f.label :time %>
+  <%= f.time_select :time %>
+  <br />
+  <br />
+  <%= f.submit %>
+<% end %>
