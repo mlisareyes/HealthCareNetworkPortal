@@ -22,19 +22,19 @@ class SessionsController < ApplicationController
   def google
     @user = User.find_or_create_by(username: auth["info"]["email"]) do |user|
       user.name = auth["info"]["name"]
-      user.password = SecureRandom.hex(10)
+      user.password = SecureRandom.hex(15)
     end
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      redirect_to '/'
+      redirect_to root_path
     end
   end
 
   private
 
-  def auth
+  def auth #method to request the auth hash
     request.env['omniauth.auth']
   end
 

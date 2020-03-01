@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  helper_method :current_user, :logged_in? #to be accessible in the views
+  helper_method :current_user, :logged_in?, :nested_user #to be accessible in the views
 
   private
 
@@ -14,5 +14,9 @@ class ApplicationController < ActionController::Base
 
   def redirect_if_not_logged_in
     redirect_to '/' if !logged_in?
+  end
+
+  def nested_user
+    params[:user_id]
   end
 end

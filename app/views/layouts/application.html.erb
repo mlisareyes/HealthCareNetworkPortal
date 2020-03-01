@@ -18,12 +18,12 @@
         <%= link_to "View My Patients", user_patients_path(current_user) %> |
         <%= link_to "View All Appointments", appointments_path %> |
         <%= link_to "View My Appointments", user_appointments_path(current_user) %> |
-        <%= link_to "Schedule New Appointment", new_appointment_path %> |
+        <%= link_to "Schedule New Appointment", new_user_appointment_path(current_user) %> |
         <%= link_to "Logout", logout_path, method:"delete"%>
       <% else %>
         <%=link_to "Sign Up", signup_path %> |
         <%=link_to "Log In", login_path %> |
-        <%=link_to "Log In With Google", '/auth/google_oauth2' %> 
+        <%=link_to "Log In With Google", '/auth/google_oauth2' %>
       <% end %>
     </div>
     <%= yield %>
