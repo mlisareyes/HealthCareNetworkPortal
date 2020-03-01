@@ -1,5 +1,7 @@
 <h1>All Notes:</h1>
 
 <% @notes.each do |n| %>
-  <li><%= n.content %></li>
+  <li><%= n.content %> <%= link_to "Click for details", patient_note_path(n.patient_id, n.id) %></li>
 <% end %>
+
+<p><%= link_to 'Add New Note', new_patient_note_path(@patient)%></p>

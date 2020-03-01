@@ -11,6 +11,7 @@
 
   <body>
     <div>
+      <ul class="nav navbar-nav navbar-right">
       <% if logged_in?%>
         <%= link_to "Home", user_path(current_user)%> |
         <%= link_to "Add a Patient", new_user_patient_path(current_user) %> |

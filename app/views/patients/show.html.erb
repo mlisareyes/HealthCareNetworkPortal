@@ -4,13 +4,17 @@
 
 <p><%= link_to 'Add New Note', new_patient_note_path(@patient)%></p>
 <p><%= link_to 'See All Notes', patient_notes_path(@patient)%></p>
-<p><%= link_to 'See All Appointments', patient_appointments_path(@patient)%></p>
 <p><%= link_to 'Edit Patient Information', edit_patient_path(@patient)%></p>
 
 <%= button_to 'Delete Patient', patient_path(@patient), method: :delete, data: { confirm: "Are you sure you want to delete this patient?" } %>
 
-<h4>Recent Notes:</h4>
+<h4>Appointments:</h4>
+<% @patient.appointments.each do |a| %>
+  <li><%= link_to a.date.strftime("%B %d, %Y"), appointment_path(a) %>, <%= a.time.strftime("%k:%M") %> w/ Dr. <%= a.user.name %></li>
+<% end %>
+
+<h4>Notes:</h4>
 
 <% @patient.notes.each do |n| %>
-  <li><%= n.content %></li>
+  <li><%= n.content %> noted by Dr. <%= n.user.name %></li>
 <% end %>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  helper_method :current_user, :logged_in?, :nested_user #to be accessible in the views
+  helper_method :current_user, :logged_in?, :nested_user, :patient_appt #to be accessible in the views
 
   private
 
@@ -18,5 +18,9 @@ class ApplicationController < ActionController::Base
 
   def nested_user
     params[:user_id]
+  end
+
+  def patient_appt
+    params[:patient_id]
   end
 end

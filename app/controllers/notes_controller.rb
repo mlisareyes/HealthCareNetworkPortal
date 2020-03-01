@@ -20,7 +20,7 @@ class NotesController < ApplicationController
 
   def create
     @patient = Patient.find_by_id(params[:patient_id])
-    @note = current_user.notes.build(notes_params)
+    @note = current_user.notes.build(note_params)
     if @note.save
       redirect_to patient_path(@note.patient_id)
     else
@@ -31,7 +31,7 @@ class NotesController < ApplicationController
   end
 
   def show
-    @patient = Patient.find_by_id(params[:patient_id])
+    @note = Note.find_by_id(params[:id])
   end
 
   def edit
@@ -39,21 +39,23 @@ class NotesController < ApplicationController
   end
 
   def update
+    @note = Note.find_by_id(params[:id])
     if @note.update(note_params)
-      redirect_to note_path(@note)
+      redirect_to note_path
     else
       #error
       render :edit
     end
   end
 
-  def delete
-    
+  def destroy
+    @note = Note.find_by_id(params[:id]).destroy
+    redirect_to notes_path(@note)
   end
 
   private
 
-  def notes_params
+  def note_params
     params.require(:note).permit(:content, :patient_id)
   end
 

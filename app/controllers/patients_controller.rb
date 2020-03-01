@@ -48,7 +48,6 @@ class PatientsController < ApplicationController
   def destroy
     @patient = Patient.find_by_id(params[:id]).destroy
     redirect_to patients_path
-    #add error if @patient was not destroyed
   end
 
   private

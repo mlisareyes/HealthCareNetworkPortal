@@ -49,7 +49,7 @@ class AppointmentsController < ApplicationController
 
   def destroy
     @appointment = Appointment.find_by_id(params[:id]).destroy
-    redirect_to user_appointments_path(@user)
+    redirect_to appointments_path(@user)
     #error if not deleted
   end
 

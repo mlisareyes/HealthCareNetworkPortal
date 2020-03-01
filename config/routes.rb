@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   delete '/logout' => 'sessions#destroy'
   delete '/apppointment/:id' => 'appointments#destroy'
+  delete '/patient/:id' => 'patients#destroy'
+  delete '/note/:id' => 'notes#destroy'
 
 #omniauth callback route
   get '/auth/:provider/callback' => 'sessions#google'

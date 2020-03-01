@@ -14,5 +14,5 @@
 <% end %>
 
 <% @appointments.each do |a| %>
-  <li><%= link_to a.date.strftime("%B %d, %Y"), appointment_path(a) %>, <%= a.time.strftime("%k:%M") %></li>
+  <li><%= link_to a.date.strftime("%B %d, %Y"), appointment_path(a) %>, <%= a.time.strftime("%k:%M") %> - <%= a.patient.name %> - w/ Dr. <%= a.user.name %></li>
 <% end %>
