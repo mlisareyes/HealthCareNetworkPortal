@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#google'
 
   resources :users do
-    resources :patients, :appointments, only: [:index, :new, :create, :destroy]
+    resources :patients, :appointments, shallow: true
   end
   resources :patients do
     resources :notes, :appointments

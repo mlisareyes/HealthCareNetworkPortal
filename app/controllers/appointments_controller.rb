@@ -25,6 +25,20 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find_by_id(params[:id])
   end
 
+  def edit
+    @appointment = Appointment.find_by_id(params[:id])
+  end
+
+  def update
+    @appointment = Appointment.find_by_id(params[:id])
+    if @appointment.update(appointment_params)
+      redirect_to appointment_path(@appointment)
+    else
+      #error here
+      render :edit
+    end
+  end
+
   def destroy
     @appointment= Appointment.find_by_id(params[:id]).destroy
     redirect_to appointments_path(@appointment)
