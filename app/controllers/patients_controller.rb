@@ -1,9 +1,9 @@
 class PatientsController < ApplicationController
   before_action :redirect_if_not_logged_in
+  before_action :set_patient, only: [:show, :edit, :update]
 
   def index
     if params[:user_id] && @user = User.find_by_id(params[:user_id])
-      # @patients = @user.patients + @user.noted_patients
       @patients = @user.patients.alpha
     else
       @patients = Patient.alpha
@@ -28,15 +28,15 @@ class PatientsController < ApplicationController
   end
 
   def show
-    @patient = Patient.find_by_id(params[:id])
+    # @patient = Patient.find_by_id(params[:id])
   end
 
   def edit
-    @patient = Patient.find_by_id(params[:id])
+    # @patient = Patient.find_by_id(params[:id])
   end
 
   def update
-    @patient = Patient.find_by_id(params[:id])
+    # @patient = Patient.find_by_id(params[:id])
     if @patient.update(patient_params)
       redirect_to patient_path
     else
@@ -54,5 +54,12 @@ class PatientsController < ApplicationController
 
   def patient_params
     params.require(:patient).permit(:name, :birthdate, :gender)
+  end
+
+  def set_patient
+    @patient = Patient.find_by_id(params[:id])
+    if !@patient
+      redirect_to patients_path
+    end
   end
 end

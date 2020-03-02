@@ -1,8 +1,7 @@
 class NotesController < ApplicationController
-  # before_action :set_note, only: [:show, :edit, :update]
+  before_action :set_note, only: [:show, :edit, :update]
 
   def index
-    # raise.inspect
     if params[:patient_id] && @patient = Patient.find_by_id(params[:patient_id])
       @notes = @patient.notes
     else
@@ -31,15 +30,15 @@ class NotesController < ApplicationController
   end
 
   def show
-    @note = Note.find_by_id(params[:id])
+    # @note = Note.find_by_id(params[:id])
   end
 
   def edit
-    @note = Note.find_by_id(params[:id])
+    # @note = Note.find_by_id(params[:id])
   end
 
   def update
-    @note = Note.find_by_id(params[:id])
+    # @note = Note.find_by_id(params[:id])
     if @note.update(note_params)
       redirect_to note_path
     else
@@ -59,10 +58,10 @@ class NotesController < ApplicationController
     params.require(:note).permit(:content, :patient_id)
   end
 
-  # def set_note
-  #   @note = Note.find_by_id(params[:id])
-  #   if !@note
-  #     redirect_to notes_path
-  #   end
-  # end
+  def set_note
+    @note = Note.find_by_id(params[:id])
+    if !@note
+      redirect_to notes_path
+    end
+  end
 end
