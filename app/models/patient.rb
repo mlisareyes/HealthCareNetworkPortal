@@ -9,4 +9,7 @@ class Patient < ApplicationRecord
 
   scope :alpha, -> { order (:name) }
 
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%")
+  end
 end

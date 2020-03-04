@@ -8,6 +8,9 @@ class PatientsController < ApplicationController
     else
       @patients = Patient.alpha
     end
+     if params[:search]
+       @patients = Patient.search(params[:search])
+     end
   end
 
   def new
