@@ -3,18 +3,4 @@
 <%= render partial: "layouts/errors", locals: {object: @patient} %>
 <!-- render the errors partial, send it the @patient as the 'object' -->
 
-<%= form_for(@patient) do |f| %>
-  <%= f.label "Name:" %>
-  <%= f.text_field :name %>
-  <br>
-    <br>
-  <%= f.label "Birthdate:" %>
-  <%= f.date_select :birthdate %>
-  <br>
-    <br>
-  <%= f.label "Sex:" %>
-  <%= f.select(:sex, [ 'Male', 'Female' ], {}, { :class => 'select' }) %>
-  <br>
-    <br>
-  <%= f.submit %>
-<% end %>
+<%= render 'form' %>

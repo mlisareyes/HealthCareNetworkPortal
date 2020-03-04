@@ -2,14 +2,4 @@
 
 <%= render partial: "layouts/errors", locals: {object: @note} %>
 <!-- render the errors partial, send it the @note as the 'object' -->
-
-<%= form_for(@note) do |f| %>
-  <%= f.label :note %>
-  <br>
-    <br>
-  <%= f.text_area :content %>
-  <br>
-    <br>
-    <%= f.hidden_field :patient_id %>
-  <%= f.submit 'Post Note' %>
-<% end %>
+<%= render 'form' %>
