@@ -1,9 +1,9 @@
 <h1><%= @patient.name %></h1>
-  <p>Birthdate: <%= @patient.birthdate.strftime("%B %d, %Y") %></p>
-  <p>Sex: <%= @patient.sex %></p>
+  <p><b>Birthdate:</b> <%= @patient.birthdate.strftime("%B %d, %Y") %></p>
+  <p><b>Sex:</b> <%= @patient.sex %></p>
 
-  <p><%= link_to 'Edit Patient Information', edit_patient_path(@patient)%></p>
-  <p><%= button_to 'Delete Patient', patient_path(@patient), method: :delete, data: { confirm: "Are you sure you want to delete this patient?" } %></p>
+  <%= link_to 'Edit Patient Information', edit_patient_path(@patient)%> |
+  <%= link_to 'Delete Patient', patient_path(@patient), method: :delete, data: { confirm: "Are you sure you want to delete this patient?" } %>
 
 <div>
   <h4>Appointments:</h4>
@@ -14,8 +14,8 @@
 
 <div>
   <h4>Notes:</h4>
-    <p><%= link_to 'Add New Note', new_patient_note_path(@patient)%></p>
-    <p><%= link_to 'See All Notes', patient_notes_path(@patient)%></p>
+    <%= link_to 'Add New Note', new_patient_note_path(@patient)%> |
+    <%= link_to 'See All Notes', patient_notes_path(@patient)%>
     <ul>
     <% @patient.notes.each do |n| %>
       <li><%= n.content %> noted by Dr. <%= n.user.name %></li>

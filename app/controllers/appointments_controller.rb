@@ -40,7 +40,6 @@ class AppointmentsController < ApplicationController
     if @appointment.update(appointment_params)
       redirect_to appointment_path(@appointment)
     else
-      #error here
       render :edit
     end
   end
