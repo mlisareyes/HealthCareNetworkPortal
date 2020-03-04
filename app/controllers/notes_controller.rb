@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update]
-  before_action :redirect_if_not_note_author, only: [:edit, :update]
+  before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_note_author, only: [:edit, :update, :destroy]
 
   def index
     if params[:patient_id] && @patient = Patient.find_by_id(params[:patient_id])
@@ -38,13 +38,12 @@ class NotesController < ApplicationController
     if @note.update(note_params)
       redirect_to note_path
     else
-      #error
       render :edit
     end
   end
 
   def destroy
-    @note = Note.find_by_id(params[:id]).destroy
+    @note.destroy
     redirect_to notes_path(@note)
   end
 
@@ -62,6 +61,9 @@ class NotesController < ApplicationController
   end
 
   def redirect_if_not_note_author
-    redirect_to notes_path if @note.user != current_user
+    if @note.user != current_user
+      redirect_to notes_path
+      flash[:message] = "***You cannot delete a note that is not yours.***"
+    end
   end
 end

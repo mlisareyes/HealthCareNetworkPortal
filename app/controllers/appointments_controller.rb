@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_if_not_appointment_user, only: [:edit, :update]
+  before_action :redirect_if_not_appointment_user, only: [:edit, :update, :destroy]
 
   def index
     if params[:user_id] && @user = User.find_by_id(params[:user_id])
@@ -48,7 +48,6 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     redirect_to appointments_path(@user)
-    #error if not deleted
   end
 
   private
@@ -66,6 +65,9 @@ class AppointmentsController < ApplicationController
   end
 
   def redirect_if_not_appointment_user
-    redirect_to appointments_path if @appointment.user != current_user
+    if @appointment.user != current_user
+      redirect_to appointments_path
+      flash[:message] = "***You cannot delete an appointment that is not yours.***"
+    end
   end
 end

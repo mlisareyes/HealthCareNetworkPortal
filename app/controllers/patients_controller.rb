@@ -4,7 +4,7 @@ class PatientsController < ApplicationController
 
   def index
     if params[:user_id] && @user = User.find_by_id(params[:user_id])
-      @patients = @user.patients.alpha
+      @patients = @user.patients.alpha.uniq
     else
       @patients = Patient.alpha
     end
@@ -37,7 +37,6 @@ class PatientsController < ApplicationController
     if @patient.update(patient_params)
       redirect_to patient_path
     else
-      #error
       render :edit
     end
   end
