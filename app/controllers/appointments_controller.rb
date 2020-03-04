@@ -29,7 +29,7 @@ class AppointmentsController < ApplicationController
     @patient = Patient.find_by_id(params[:patient_id])
     @appointment = current_user.appointments.build(appointment_params)
     if @appointment.save
-      redirect_to appointment_path(@appointment.patient_id)
+      redirect_to appointments_path
     else
       render :new
     end
