@@ -18,13 +18,18 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    @appointment = Appointment.new
+    if params[:patient_id] && @patient = Patient.find_by_id(params[:patient_id])
+      @appointment = @patient.appointments.build
+    else
+      @appointment = Appointment.new
+    end
   end
 
   def create
+    @patient = Patient.find_by_id(params[:patient_id])
     @appointment = current_user.appointments.build(appointment_params)
     if @appointment.save
-      redirect_to appointment_path(@appointment)
+      redirect_to appointment_path(@appointment.patient_id)
     else
       render :new
     end
