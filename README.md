@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app should allow all doctors to access their patients' information using this app. Doctors should be able to signup by creating a unique username and password or log in using Google. This app is used to keep track of their patients by adding their information, scheduling appointments, and keeping notes on each patient.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-* System dependencies
+### Installing
 
-* Configuration
+To install the Healthcare Professional Portal, clone this repository to your local environment.
 
-* Database creation
+Next, run `bundle` to install the gems in the Gemfile necessary to run this program.
 
-* Database initialization
+To run the program, run the `rails s` command.
 
-* How to run the test suite
+## Contributing
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Everyone interacting in the Healthcare Professional Portal codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct.

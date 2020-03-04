@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   before_action :redirect_if_not_logged_in
-  before_action :set_patient, only: [:show, :edit, :update]
+  before_action :set_patient, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:user_id] && @user = User.find_by_id(params[:user_id])
@@ -28,15 +28,12 @@ class PatientsController < ApplicationController
   end
 
   def show
-    # @patient = Patient.find_by_id(params[:id])
   end
 
   def edit
-    # @patient = Patient.find_by_id(params[:id])
   end
 
   def update
-    # @patient = Patient.find_by_id(params[:id])
     if @patient.update(patient_params)
       redirect_to patient_path
     else
@@ -46,14 +43,14 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-    @patient = Patient.find_by_id(params[:id]).destroy
+    @patient.destroy
     redirect_to patients_path
   end
 
   private
 
   def patient_params
-    params.require(:patient).permit(:name, :birthdate, :gender)
+    params.require(:patient).permit(:name, :birthdate, :sex)
   end
 
   def set_patient

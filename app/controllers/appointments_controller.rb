@@ -1,5 +1,6 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:show, :edit, :update]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_appointment_user, only: [:edit, :update]
 
   def index
     if params[:user_id] && @user = User.find_by_id(params[:user_id])
@@ -30,15 +31,12 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    # @appointment = Appointment.find_by_id(params[:id])
   end
 
   def edit
-    # @appointment = Appointment.find_by_id(params[:id])
   end
 
   def update
-    # @appointment = Appointment.find_by_id(params[:id])
     if @appointment.update(appointment_params)
       redirect_to appointment_path(@appointment)
     else
@@ -48,7 +46,7 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
-    @appointment = Appointment.find_by_id(params[:id]).destroy
+    @appointment.destroy
     redirect_to appointments_path(@user)
     #error if not deleted
   end
@@ -65,5 +63,9 @@ class AppointmentsController < ApplicationController
       flash[:message] = "Appointment was not found"
       redirect_to appointments_path
     end
+  end
+
+  def redirect_if_not_appointment_user
+    redirect_to appointments_path if @appointment.user != current_user
   end
 end

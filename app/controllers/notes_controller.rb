@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update]
+  before_action :redirect_if_not_note_author, only: [:edit, :update]
 
   def index
     if params[:patient_id] && @patient = Patient.find_by_id(params[:patient_id])
@@ -25,20 +26,15 @@ class NotesController < ApplicationController
     else
       render :new
     end
-    # @note = Patient.find_by_id(params[:patient_id]).notes.build(notes_params)
-    # @note.user_id = current_user.id
   end
 
   def show
-    # @note = Note.find_by_id(params[:id])
   end
 
   def edit
-    # @note = Note.find_by_id(params[:id])
   end
 
   def update
-    # @note = Note.find_by_id(params[:id])
     if @note.update(note_params)
       redirect_to note_path
     else
@@ -63,5 +59,9 @@ class NotesController < ApplicationController
     if !@note
       redirect_to notes_path
     end
+  end
+
+  def redirect_if_not_note_author
+    redirect_to notes_path if @note.user != current_user
   end
 end

@@ -12,8 +12,8 @@
   <%= f.date_select :birthdate %>
   <br>
     <br>
-  <%= f.label "Gender:" %>
-  <%= f.select(:gender, [ 'Male', 'Female', 'Other', 'Prefer Not to Disclose' ], {}, { :class => 'select' }) %>
+  <%= f.label "Sex:" %>
+  <%= f.select(:sex, [ 'Male', 'Female' ], {}, { :class => 'select' }) %>
   <br>
     <br>
   <%= f.submit %>
